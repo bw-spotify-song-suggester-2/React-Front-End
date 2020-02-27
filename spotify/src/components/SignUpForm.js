@@ -16,6 +16,9 @@ const SignUpForm = props => {
     const handleSubmit = e => {
         e.preventDefault();
         console.log('New User: ', newUser)
+        
+        // Post Call Will Eventually go here once BackEnd is Set Up
+
         setNewUser({
             firstName: '',
             lastName: '',
