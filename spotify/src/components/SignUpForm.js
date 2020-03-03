@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignUpForm = props => {
     const [newUser, setNewUser] = useState({
         firstName: '',
         lastName: '',
-        username: '',
         email: '',
+        username: '',
         password: ''
     })
 
@@ -16,16 +17,21 @@ const SignUpForm = props => {
     const handleSubmit = e => {
         e.preventDefault();
         console.log('New User: ', newUser)
-        
-        // Post Call Will Eventually go here once BackEnd is Set Up
-
-        setNewUser({
-            firstName: '',
-            lastName: '',
-            username: '',
-            email: '',
-            password: ''
-        })
+        axios
+            .post('https://spotify-song-suggester-neo.herokuapp.com/api/auth/register', newUser)
+            .then(res => {
+                console.log('Successful Register: ', res);
+                setNewUser({
+                    firstName: '',
+                    lastName: '',
+                    username: '',
+                    email: '',
+                    password: ''
+                })
+            })
+            .catch(err => {
+                console.log('Error Registering User: ', err);
+            })
     }
 
     return (
