@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const LoginForm = props => {
     const [user, setUser] = useState({
@@ -15,12 +16,21 @@ const LoginForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('User: ', user)
-
-        setUser({
-            email: '',
-            password: ''
-        })
+        axiosWithAuth()
+            .post('/auth/login', user)
+            .then(res => {
+                localStorage.setItem('token', res);
+                setUser({
+                    username: '',
+                    password: ''
+                })
+                props.history.push('/dashboard');
+                console.log('Data: ', res);
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Problem Logging in: ', err)
+            })
     }
 
     return (
