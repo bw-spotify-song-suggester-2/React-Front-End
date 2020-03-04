@@ -36,13 +36,6 @@ export const signUp = (credentials, history) => dispatch => {
     .then(res => {
         console.log('Successful Register: ', res);
         dispatch({ type: SIGNUP_SUCCESS });
-        setNewUser({
-            firstName: '',
-            lastName: '',
-            username: '',
-            email: '',
-            password: ''
-        })
         history.push('/login');
     })
     .catch(err => {
