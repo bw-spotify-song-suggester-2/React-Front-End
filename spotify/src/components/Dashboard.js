@@ -16,7 +16,8 @@ const Dashboard = props => {
             <h2>Welcome to your Dashboard</h2>
             <section>
                 <form>
-                    <input type='text' />
+                    Add a playlist for more recommondations:<br/>
+                    <input type='text' placeholder='Spotify Playlist URL'/>
                 </form>
             </section>
         </div>
