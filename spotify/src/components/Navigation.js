@@ -5,8 +5,8 @@ const Navigation = () => {
     return (
         <div className="nav-container">
            <NavLink to='/'>Home </NavLink>
-           <NavLink to="/">Sign-In </NavLink>
-           <NavLink to='/'>Register </NavLink>
+           <NavLink to="/login">Sign-In </NavLink>
+           <NavLink to='/signup'>Register </NavLink>
         </div>
     )
 }
