@@ -4,6 +4,10 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+//Redux Imports
+import { connect } from 'react-redux';
+import { login } from '../actions';
+
 // const LoginForm = props => {
 //     const [user, setUser] = useState({
 //         username: '',
@@ -74,7 +78,7 @@ const LoginForm = ({ values, touched, errors}) => {
     );
   };
 
-const FormikLoginForm = {
+const FormikLoginForm = withFormik({
     mapPropsToValues({ username, password }){
         return {
             username: username || '',
@@ -92,20 +96,14 @@ const FormikLoginForm = {
     }),
 
     handleSubmit(values, {resetForm, props, ...rest}){
-        // rest.props.login({...values})
-        axiosWithAuth()
-            .post('/auth/login', values)
-            .then(res => {
-                localStorage.setItem('token', res.data.token);
-                props.props.history.push('/dashboard')
-                console.log(props);
-                console.log('Data: ', res);
-            })
-            .catch(err => {
-                localStorage.removeItem('token');
-                console.log('Problem Logging in: ', err)
-            })
+        props.login(values, props.props.history)
     }
-  };
+  })(LoginForm);
 
-export default withFormik(FormikLoginForm)(LoginForm);
+const mapStateToProps = state => ({
+    loggingIn: state.loggingIn
+})
+
+const Connect = connect(mapStateToProps, { login })(FormikLoginForm);
+
+export default Connect
