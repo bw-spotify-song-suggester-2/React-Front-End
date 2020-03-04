@@ -13,6 +13,7 @@ const initialState = {
     loggingIn: false,
     signingUp: false,
     error: '',
+    recs: []
 }
 
 const reducer = (state = initialState, action) => {
