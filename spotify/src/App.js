@@ -6,18 +6,19 @@ import Login from './components/Login';
 import SignUpForm from './components/SignUpForm';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './components/Dashboard';
+import Homepage from './components/Homepage';
 
 function App() {
   return (
     <div className="App">
       <Navigation />
-      <h1>Spotify Song Suggester</h1>
       <Switch>
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <Route path='/login' render={(props) => <Login {...props}/>}/>
         {/* <Route exact path='/login' component={Login} /> */}
         <Route exact path='/signup' component={SignUpForm} />
       </Switch>
+      <Homepage />
     </div>
   );
 }
