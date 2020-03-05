@@ -37,22 +37,49 @@
   background-color: rgba(0, 128, 0, 0.541);
 }
 
-/* Dashboard Styling */
+/* Signup Form Styling */
 
-.recsBox {
-  margin: 2% auto;
+.signupContainer {
+  width: 1000px;
+  margin: 0 auto;
 }
 
-.recs {
-  width: 200px;
+.signupContainer h3 {
   text-align: center;
-  background-color: #121212;
+}
+
+.signupForm {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+}
+
+.signupForm input {
+  width: 40%;
+  height: 40px;
+  margin: 1% auto;
+  font-size: medium;
+}
+
+.signupForm input::placeholder {
+  font-size: medium;
+}
+
+.signupForm h3 {
+  font-size: 20px;
+}
+
+.signupForm button {
+  width: 20%;
+  border: none;
+  height: 30px;
+  margin: 1% auto;
+  background-color: #008000;
+  font-size: 16px;
+  font-weight: bolder;
   color: white;
   cursor: pointer;
-}
-
-.recs:hover {
-  background-color: #282828;
 }
 
 .recs img{
@@ -82,4 +109,7 @@
   color: green;
   text-decoration: underline;
   font-weight: bolder;
+
+.signupForm button:hover {
+  background-color: #00800086;
 }
