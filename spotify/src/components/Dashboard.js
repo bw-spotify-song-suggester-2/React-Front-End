@@ -11,4 +11,8 @@ const Dashboard = props => {
     )
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+    recs: state.recs
+})
+
+export default connect(mapStateToProps, { fetchRecs })(Dashboard);

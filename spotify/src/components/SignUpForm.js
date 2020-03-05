@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { signUp } from '../actions';
 
 const SignUpForm = props => {
     const [newUser, setNewUser] = useState({
@@ -16,22 +17,7 @@ const SignUpForm = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('New User: ', newUser)
-        axios
-            .post('https://spotify-song-suggester-neo.herokuapp.com/api/auth/register', newUser)
-            .then(res => {
-                console.log('Successful Register: ', res);
-                setNewUser({
-                    firstName: '',
-                    lastName: '',
-                    username: '',
-                    email: '',
-                    password: ''
-                })
-            })
-            .catch(err => {
-                console.log('Error Registering User: ', err);
-            })
+        props.signUp(newUser, props.history)
     }
 
     return (
@@ -79,4 +65,8 @@ const SignUpForm = props => {
     )
 }
 
-export default SignUpForm;
+const mapStateToProps = state => ({
+    
+})
+
+export default connect(mapStateToProps, {signUp})(SignUpForm);
