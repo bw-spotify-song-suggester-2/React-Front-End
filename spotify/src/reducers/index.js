@@ -13,6 +13,7 @@ import {
 const initialState = {
     username: '',
     password: '',
+    user_id: '',
     loggingIn: false,
     signingUp: false,
     fetching: false,
@@ -29,7 +30,7 @@ const reducer = (state = initialState, action) => {
                 };
             case LOGIN_SUCCESS:
                 return {
-                    ...state, loggingIn: false
+                    ...state, loggingIn: false, user_id: action.payload
                 };
             case LOGIN_ERROR:
                 return {
