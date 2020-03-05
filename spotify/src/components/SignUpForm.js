@@ -22,16 +22,18 @@ const SignUpForm = props => {
 
     return (
         <div className='signupContainer'>
+            <h3>Create an Account</h3>
             <form className='signupForm' onSubmit={handleSubmit}>
-                <h3>Sign Up</h3>
-                <input 
+                <input
+                required 
                 type='text'
                 name='firstName'
                 placeholder='First Name'
                 onChange={handleChange}
                 value={newUser.firstName}
                 />
-                <input 
+                <input
+                required 
                 type='text'
                 name='lastName'
                 placeholder='Last Name'
@@ -39,6 +41,7 @@ const SignUpForm = props => {
                 value={newUser.lastName}
                 />
                 <input 
+                required
                 type='text'
                 name='username'
                 placeholder='Username'
@@ -46,6 +49,7 @@ const SignUpForm = props => {
                 value={newUser.username}
                 />
                 <input 
+                required
                 type='text'
                 name='email'
                 placeholder='Email'
@@ -53,6 +57,7 @@ const SignUpForm = props => {
                 value={newUser.email}
                 />
                 <input 
+                required
                 type='password'
                 name='password'
                 placeholder='Password'
