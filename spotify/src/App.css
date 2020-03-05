@@ -82,6 +82,34 @@
   cursor: pointer;
 }
 
+.recs img{
+  align-items: center;
+  width: 200px;
+}
+
+/* formik form on Login page styling */
+.loginForm {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.loginImg {
+  width: 50%;
+  border: 2px solid green;
+}
+
+.loginLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.loginLink:hover {
+  color: green;
+  text-decoration: underline;
+  font-weight: bolder;
+
 .signupForm button:hover {
   background-color: #00800086;
 }
