@@ -26,7 +26,7 @@ const RecommendationList = props => {
 
     return (
         <div className="rec-list">
-           <h1>Got stuff</h1>
+           <h3>Here's your recommendations:</h3>
            {recs.map(obj => {
                return <RecommendationCard obj={obj} key={obj.id} />;
            })}
