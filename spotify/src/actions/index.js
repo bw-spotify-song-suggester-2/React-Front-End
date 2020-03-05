@@ -12,13 +12,15 @@ export const login = (credentials, history) => dispatch => {
             .then(res => {
                 setTimeout(() => {
                     localStorage.setItem('token', res.data.token);
-                    dispatch({ type: LOGIN_SUCCESS });
+                    localStorage.setItem('user_id', res.data.user_id)
+                    dispatch({ type: LOGIN_SUCCESS, payload: localStorage.getItem('user_id')});
                     history.push('/dashboard');
                     console.log('Data: ', res);
                 }, 1000)
             })
             .catch(err => {
                 localStorage.removeItem('token');
+                localStorage.removeItem('user_id');
                 dispatch({ type: LOGIN_ERROR })
                 console.log('Problem Logging in: ', err)
             });
@@ -50,9 +52,9 @@ export const FETCH_ERROR = 'FETCH_ERROR';
 
 export const fetchRecs = () => dispatch => {
     dispatch({ type: FETCH_RECS });
-
+    const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        .get('https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/1/recs')
+        .get(`https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/2/recs`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
             setTimeout(() => {
