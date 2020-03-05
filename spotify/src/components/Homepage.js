@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledHeader = styled.h2`
+    color: white
+`
+
+const StyledP = styled.p`
+    color: white
+`
 
 const Homepage = () => {
     const handleRedirect = e => {
@@ -6,11 +15,11 @@ const Homepage = () => {
     }
     return (
         <div className="homeContainer">
-            <section className="imageHeader" />
+            <section className="imageHeader"></section>
             <section className="content">
                 <div className="contentInfo">
-                <h2>New music, just for you.</h2>
-                <p>Millions of songs, waiting to be discovered.</p>
+                <StyledHeader>New music, just for you.</StyledHeader>
+                <StyledP>Millions of songs, waiting to be discovered.</StyledP>
                 </div>
             </section>
             <section className="actionCall">
