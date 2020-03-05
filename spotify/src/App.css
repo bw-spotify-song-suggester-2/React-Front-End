@@ -36,3 +36,26 @@
 .actionCall button:hover {
   background-color: rgba(0, 128, 0, 0.541);
 }
+
+/* Dashboard Styling */
+
+.recsBox {
+  margin: 2% auto;
+}
+
+.recs {
+  width: 200px;
+  text-align: center;
+  background-color: #121212;
+  color: white;
+  cursor: pointer;
+}
+
+.recs:hover {
+  background-color: #282828;
+}
+
+.recs img{
+  align-items: center;
+  width: 200px;
+}

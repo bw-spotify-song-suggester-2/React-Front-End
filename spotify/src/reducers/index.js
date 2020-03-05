@@ -5,6 +5,9 @@ import {
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_ERROR,
+    FETCH_RECS,
+    FETCH_SUCCESS,
+    FETCH_ERROR,
 } from '../actions';
 
 const initialState = {
@@ -12,7 +15,9 @@ const initialState = {
     password: '',
     loggingIn: false,
     signingUp: false,
-    error: '',
+    fetching: false,
+    error: false,
+    errorMssg: '',
     recs: []
 }
 
@@ -20,7 +25,7 @@ const reducer = (state = initialState, action) => {
         switch (action.type) {
             case LOGIN_START:
                 return {
-                    ...state, loggingIn: true
+                    ...state, loggingIn: true, error: false
                 };
             case LOGIN_SUCCESS:
                 return {
@@ -28,8 +33,20 @@ const reducer = (state = initialState, action) => {
                 };
             case LOGIN_ERROR:
                 return {
-                    ...state, loggingIn: false, error: 'Invalid Login'
+                    ...state, loggingIn: false, error: true, errorMssg: 'Invalid Login'
                 };
+            case FETCH_RECS:
+                return {
+                    ...state, fetching: true 
+                };
+            case FETCH_SUCCESS:
+                return {
+                    ...state, recs: action.payload
+                }
+            case FETCH_ERROR:
+                return {
+                    ...state, error: true, errorMssg: 'Error Retrieving Recommendations'
+                }
             default:
                 return state;
         }

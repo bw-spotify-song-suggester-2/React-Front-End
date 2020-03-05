@@ -43,3 +43,24 @@ export const signUp = (credentials, history) => dispatch => {
         console.log('Error Registering User: ', err);
     })
 }
+
+export const FETCH_RECS = 'FETCH_RECS';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const FETCH_ERROR = 'FETCH_ERROR';
+
+export const fetchRecs = () => dispatch => {
+    dispatch({ type: FETCH_RECS });
+
+    axiosWithAuth()
+        .get('https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/1/recs')
+        .then(res => {
+            console.log('Recommendations Successfuly Loaded: ', res.data)
+            setTimeout(() => {
+                dispatch({ type: FETCH_SUCCESS, payload: res.data });
+            }, 1000)
+        })
+        .catch(err => {
+            console.log('Error fetching Recs: ', err);
+            dispatch({ type: FETCH_ERROR });
+        })
+}
