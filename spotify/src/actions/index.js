@@ -56,7 +56,7 @@ export const userRecs = () => dispatch => {
     dispatch({ type: FETCH_RECS });
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        .get(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`)
+        .get(`https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/${user_id}/recs`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
             setTimeout(() => {
