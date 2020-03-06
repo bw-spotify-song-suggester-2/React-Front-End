@@ -41,7 +41,7 @@
 
 .signupContainer {
   width: 1000px;
-  margin: 0 auto;
+  margin: 30% auto;
 }
 
 .signupContainer h3 {
@@ -109,6 +109,7 @@
   color: green;
   text-decoration: underline;
   font-weight: bolder;
+}
 
 .signupForm button:hover {
   background-color: #00800086;
