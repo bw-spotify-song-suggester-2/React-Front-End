@@ -1,4 +1,5 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -35,6 +36,7 @@ export const signUp = (credentials, history) => dispatch => {
     
     axiosWithAuth()
     .post('https://spotify-song-suggester-neo.herokuapp.com/api/auth/register', credentials)
+    // .post('https://songsight-api.herokuapp.com/accounts/register', credentials)
     .then(res => {
         console.log('Successful Register: ', res);
         dispatch({ type: SIGNUP_SUCCESS });
@@ -50,11 +52,11 @@ export const FETCH_RECS = 'FETCH_RECS';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 
-export const fetchRecs = () => dispatch => {
+export const userRecs = () => dispatch => {
     dispatch({ type: FETCH_RECS });
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        .get(`https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/2/recs`)
+        .get(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
             setTimeout(() => {
@@ -64,5 +66,41 @@ export const fetchRecs = () => dispatch => {
         .catch(err => {
             console.log('Error fetching Recs: ', err);
             dispatch({ type: FETCH_ERROR });
+        })
+}
+
+export const TRACK_RECS = 'TRACK_RECS';
+export const TRACK_SUCCESS = 'TRACK_SUCCESS';
+export const TRACK_ERROR = 'TRACK_ERROR';
+
+export const trackRecs = (data) => dispatch => {
+    dispatch({ type: TRACK_RECS })
+    const user_id = localStorage.getItem('user_id')
+    axiosWithAuth()
+        // .get(`https://spotify-song-suggester-2.herokuapp.com/request/?search=${data}`)
+        .post(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`, data)
+        .then(res => {
+            console.log('IT WORKED', res);
+            setTimeout(() => {
+                dispatch({ type: TRACK_SUCCESS, payload: res.data.data})
+            }, 1000)
+        })
+        .catch(err => console.log('Cannot get recs bro', err))
+}
+
+export const CLEAR_START = 'CLEAR_START';
+export const CLEAR_SUCCESS = 'CLEAR_SUCCESS';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+
+export const clearRecs = () => dispatch => {
+    const user_id = localStorage.getItem('user_id')
+    axiosWithAuth()
+        .delete(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`)
+        .then(res => {
+            console.log('DELETE RES: ', res)
+            dispatch({ type: CLEAR_SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            console.log('Problem deleting: ', err)
         })
 }
