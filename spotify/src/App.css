@@ -134,8 +134,19 @@
   justify-content: space-around;
 }
 
+.playlistRecsContainer {
+  height: 330px;
+  overflow: scroll;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
 .musicBox {
   width: 30%;
+  margin-top: 2%;
   background-color: #282828;
   color: white;
   text-align: center;
