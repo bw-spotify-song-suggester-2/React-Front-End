@@ -62,6 +62,9 @@ const Dashboard = props => {
                                 <h3>{music.song}</h3>
                                 <p>{music.artist}</p>
                                 <p>{music.album}</p>
+                                <div className='trackButtons'>
+                                    <button onClick={()=> window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
+                                </div>
                             </div>
                         )
                     })}
