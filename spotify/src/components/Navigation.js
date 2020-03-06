@@ -22,7 +22,7 @@ const Navbar = (props) => {
         <FlexContainer>
           <Brand />
           <NavLinks style={linkAnimation}>
-            <a href="/">Home </a>
+            <a href="https://bw-spotify-song-suggester-2.github.io/Marketing-page/">Home </a>
             <a href="/login">Sign-In</a>
             <a href="/signup">Register</a>
           </NavLinks>
