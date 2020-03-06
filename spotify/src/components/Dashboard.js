@@ -63,7 +63,8 @@ const Dashboard = props => {
                                 <p>{music.artist}</p>
                                 <p>{music.album}</p>
                                 <div className='trackButtons'>
-                                    <button onClick={()=> window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
+                                    <button onClick={() => window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
+                                    {/* <button onClick={handleClear}>Delete</button> */}
                                 </div>
                             </div>
                         )
@@ -76,21 +77,6 @@ const Dashboard = props => {
                 <form className='playlistForm' onSubmit={link}>
                     <input placeholder='Playlist URL' onChange={handleChanges}/>
                     <button>Submit</button>
-                    <div className='playlistRecsContainer'>
-                        {props.similarRecs.map((music) => {
-                            return (
-                                    <div key={music.track_id} className='musicBox'>
-                                        <h3>{music.track}</h3>
-                                        <p>{music.artist}</p>
-                                        <div className='trackButtons'>
-                                            <button onClick={()=> window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
-                                        </div>
-                                    </div>
-                            )
-                        }) }
-                        {/* {items}
-                        <button onClick={handleShowMore}>Show More</button> */}
-                    </div>
                 </form>
             </section>
         </div>

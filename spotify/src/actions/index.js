@@ -92,10 +92,9 @@ export const CLEAR_START = 'CLEAR_START';
 export const CLEAR_SUCCESS = 'CLEAR_SUCCESS';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
-export const clearRecs = () => dispatch => {
-    const user_id = localStorage.getItem('user_id')
+export const clearRecs = (playlist_id) => dispatch => {
     axiosWithAuth()
-        .delete(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`)
+        .delete(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${playlist_id}`)
         .then(res => {
             console.log('DELETE RES: ', res)
             dispatch({ type: CLEAR_SUCCESS, payload: res.data})
