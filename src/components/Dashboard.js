@@ -14,7 +14,7 @@ const Dashboard = props => {
         })
     }
     useEffect(() => {
-        props.userRecs();
+        props.userRecs(props.recs);
     }, [])
 
     // const handleShowMore = e => {
@@ -36,12 +36,13 @@ const Dashboard = props => {
     //     )
     // })
     const link = e => {
+        e.preventDefault();
         props.trackRecs(spotify_playlist);
-        setTrack_Id()
+        setTrack_Id('')
     }
 
     const handleClear = e => {
-        e.preventDefault()
+        // e.preventDefault()
         props.clearRecs()
     }
 
@@ -54,9 +55,9 @@ const Dashboard = props => {
             {/* <RecommendationList /> */}
             <section className='user-recs'>
                 <h2>Your Recommendations</h2>
-                <button onClick={handleClear}>Clear Recommendations</button>
+                {/* <button onClick={handleClear}>Clear Recommendations</button> */}
                 <div className='playlistRecsContainer'>
-                    {props.recs.map((music, index) => {
+                    { props.fetching ? (<p>Loading...</p>) : (props.recs[0] && props.recs.map((music, index) => {
                         return (
                             <div key={index} className='musicBox'>
                                 <h3>{music.song}</h3>
@@ -64,11 +65,14 @@ const Dashboard = props => {
                                 <p>{music.album}</p>
                                 <div className='trackButtons'>
                                     <button onClick={() => window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
-                                    {/* <button onClick={handleClear}>Delete</button> */}
+                                    <button onClick={(e) => {
+                                        e.preventDefault();
+                                        props.clearRecs(music.playlist_id)
+                                        }}>Delete</button>
                                 </div>
                             </div>
                         )
-                    })}
+                    }))}
                 </div>
             </section>
             <section>
@@ -87,6 +91,7 @@ const mapStateToProps = state => ({
     user_id: state.user_id,
     recs: state.recs,
     similarRecs: state.similarRecs,
+    fetching: state.fetching
 })
 
 export default connect(mapStateToProps, { userRecs, trackRecs, clearRecs })(Dashboard);
