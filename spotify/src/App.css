@@ -114,3 +114,46 @@
 .signupForm button:hover {
   background-color: #00800086;
 }
+
+/* Dashboard Styling */
+
+.dashboard-container {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+
+.dashboard-container h1 {
+  text-align: center;
+}
+
+.userRecsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.playlistRecsContainer {
+  height: 330px;
+  overflow: scroll;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+
+.musicBox {
+  width: 30%;
+  margin-top: 2%;
+  background-color: #282828;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+
+.musicBox p {
+  color: #B3B3B3;
+  font-size: 18px;
+}
