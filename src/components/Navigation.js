@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
+import { connect } from 'react-redux';
 import Brand from "./Brand";
 
-const Navbar = (props) => {
+const Navigationbar = (props) => {
   const barAnimation = useSpring({
     from: { transform: 'translate3d(0, -10rem, 0)' },
     transform: 'translate3d(0, 0, 0)',
@@ -16,23 +17,29 @@ const Navbar = (props) => {
     config: config.wobbly,
   });
 
+  const logOut = e => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user_id')
+    window.location.reload(false);
+  }
+
   return (
     <>
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Brand />
-          <NavLinks style={linkAnimation}>
-            <a href="https://bw-spotify-song-suggester-2.github.io/Marketing-page/">Home </a>
-            <a href="/login">Sign-In</a>
-            <a href="/signup">Register</a>
-          </NavLinks>
+            {props.loggedIn? (<button onClick={logOut}>Log Out</button>) : (
+              <NavLinks style={linkAnimation}>
+                <a href="https://bw-spotify-song-suggester-2.github.io/Marketing-page/">Home </a>
+                <a href="/login">Sign-In</a>
+                <a href="/signup">Register</a>
+              </NavLinks>
+            )}
         </FlexContainer>
       </NavBar>
    </>
   )
 }
-
-export default Navbar
 
 const NavBar = styled(animated.nav)`
   position: fixed;
@@ -73,3 +80,9 @@ const NavLinks = styled(animated.ul)`
     }
   }
 `;
+
+const mapStateToProps = state => ({
+  loggedIn: state.loggedIn
+})
+
+export default connect(mapStateToProps, {})(Navigationbar)

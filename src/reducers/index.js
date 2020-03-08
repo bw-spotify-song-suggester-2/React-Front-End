@@ -20,6 +20,7 @@ const initialState = {
     user_id: '',
     loggingIn: false,
     signingUp: false,
+    loggedIn: false,
     fetching: false,
     error: false,
     errorMssg: '',
@@ -31,19 +32,19 @@ const reducer = (state = initialState, action) => {
         switch (action.type) {
             case LOGIN_START:
                 return {
-                    ...state, loggingIn: true, error: false
+                    ...state, loggingIn: true, error: false, loggedIn: false,
                 };
             case LOGIN_SUCCESS:
                 return {
-                    ...state, loggingIn: false, user_id: action.payload
+                    ...state, loggingIn: false, user_id: action.payload, loggedIn: true
                 };
             case LOGIN_ERROR:
                 return {
-                    ...state, loggingIn: false, error: true, errorMssg: 'Invalid Login'
+                    ...state, loggingIn: false, error: true, errorMssg: 'Invalid Login', loggedIn: false
                 };
             case FETCH_RECS:
                 return {
-                    ...state, fetching: true , error: false, errorMssg: ''
+                    ...state, fetching: true , error: false, errorMssg: '', loggedIn: true
                 };
             case FETCH_SUCCESS:
                 return {
