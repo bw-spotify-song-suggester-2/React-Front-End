@@ -43,7 +43,7 @@ const reducer = (state = initialState, action) => {
                 };
             case FETCH_RECS:
                 return {
-                    ...state, fetching: true 
+                    ...state, fetching: true , error: false, errorMssg: ''
                 };
             case FETCH_SUCCESS:
                 return {
@@ -51,7 +51,7 @@ const reducer = (state = initialState, action) => {
                 }
             case FETCH_ERROR:
                 return {
-                    ...state, error: true, fetching: false, errorMssg: 'Error Retrieving Recommendations'
+                    ...state, error: true, fetching: false, errorMssg: 'You have no recommendations. Submit a playlist link below to get started. '
                 }
             case TRACK_RECS:
                 return {
