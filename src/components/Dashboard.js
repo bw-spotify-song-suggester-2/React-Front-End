@@ -38,7 +38,6 @@ const Dashboard = props => {
     const link = e => {
         e.preventDefault();
         props.trackRecs(spotify_playlist);
-        props.userRecs(props.recs);
         setTrack_Id('')
     }
 
@@ -69,7 +68,6 @@ const Dashboard = props => {
                                     <button onClick={(e) => {
                                         e.preventDefault();
                                         props.clearRecs(music.playlist_id)
-                                        props.userRecs(props.recs);
                                         }}>Delete</button>
                                 </div>
                             </div>
