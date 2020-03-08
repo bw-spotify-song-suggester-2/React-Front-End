@@ -57,6 +57,7 @@ const Dashboard = props => {
                 <h2>Your Recommendations</h2>
                 {/* <button onClick={handleClear}>Clear Recommendations</button> */}
                 <div className='playlistRecsContainer'>
+                    {props.error ? (<div>{props.errorMssg}</div>) : (<></>)}
                     { props.fetching ? (<p>Loading...</p>) : (props.recs[0] && props.recs.map((music, index) => {
                         return (
                             <div key={index} className='musicBox'>
@@ -91,7 +92,9 @@ const mapStateToProps = state => ({
     user_id: state.user_id,
     recs: state.recs,
     similarRecs: state.similarRecs,
-    fetching: state.fetching
+    fetching: state.fetching,
+    error: state.error,
+    errorMssg: state.errorMssg
 })
 
 export default connect(mapStateToProps, { userRecs, trackRecs, clearRecs })(Dashboard);
