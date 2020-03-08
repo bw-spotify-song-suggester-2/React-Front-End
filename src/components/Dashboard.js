@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 // import RecommendationList from './RecommendationList';
 import { connect } from 'react-redux';
-import { userRecs, trackRecs, clearRecs } from '../actions';
+import { userRecs, trackRecs, clearRecs, FETCH_RECS } from '../actions';
 
 const Dashboard = props => {
     const [spotify_playlist, setTrack_Id] = useState();
@@ -38,6 +38,7 @@ const Dashboard = props => {
     const link = e => {
         e.preventDefault();
         props.trackRecs(spotify_playlist);
+        props.userRecs(props.recs);
         setTrack_Id('')
     }
 
@@ -68,6 +69,7 @@ const Dashboard = props => {
                                     <button onClick={(e) => {
                                         e.preventDefault();
                                         props.clearRecs(music.playlist_id)
+                                        props.userRecs(props.recs);
                                         }}>Delete</button>
                                 </div>
                             </div>
