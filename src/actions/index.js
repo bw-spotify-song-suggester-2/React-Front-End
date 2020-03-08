@@ -59,9 +59,7 @@ export const userRecs = () => dispatch => {
         .get(`https://spotify-song-suggester-neo.herokuapp.com/api/recommendations/${user_id}/recs`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
-            setTimeout(() => {
                 dispatch({ type: FETCH_SUCCESS, payload: res.data });
-            }, 1000)
         })
         .catch(err => {
             console.log('Error fetching Recs: ', err);
@@ -81,9 +79,8 @@ export const trackRecs = (data) => dispatch => {
         .post(`https://spotify-song-suggester-neo.herokuapp.com/api/playlists/${user_id}`, data)
         .then(res => {
             console.log('IT WORKED', res);
-            setTimeout(() => {
-                dispatch({ type: TRACK_SUCCESS, payload: res.data.data})
-            }, 1000)
+            dispatch({ type: TRACK_SUCCESS, payload: res.data.data})
+            window.location.reload(false);
         })
         .catch(err => console.log('Cannot get recs bro', err))
 }
@@ -98,6 +95,7 @@ export const clearRecs = (playlist_id) => dispatch => {
         .then(res => {
             console.log('DELETE RES: ', res)
             dispatch({ type: CLEAR_SUCCESS, payload: res.data})
+            window.location.reload(false);
         })
         .catch(err => {
             console.log('Problem deleting: ', err)
