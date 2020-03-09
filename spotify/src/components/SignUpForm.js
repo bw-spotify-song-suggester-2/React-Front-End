@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions';
+import styled from 'styled-components';
+
+const SignupText = styled.h3`
+    color: green;
+`
+const StyledButton = styled.button`
+    background-color: green;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    margin: 1% auto;
+    width: 40%;
+    padding: .5%;
+    border-radius: 10px;
+    cursor: pointer;
+
+    :hover {
+        background-color: black;
+    }
+`
 
 const SignUpForm = props => {
     const [newUser, setNewUser] = useState({
@@ -22,7 +42,7 @@ const SignUpForm = props => {
 
     return (
         <div className='signupContainer'>
-            <h3>Create an Account</h3>
+            <SignupText>Create an Account</SignupText>
             <form className='signupForm' onSubmit={handleSubmit}>
                 <input
                 required 
@@ -64,7 +84,7 @@ const SignUpForm = props => {
                 onChange={handleChange}
                 value={newUser.password}
                 />
-                <button>Sign Up</button>
+                <StyledButton>Sign Up</StyledButton>
             </form>
         </div>
     )
