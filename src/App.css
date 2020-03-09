@@ -41,7 +41,7 @@
 
 .signupContainer {
   width: 1000px;
-  margin: 30% auto;
+  margin: 10% auto;
 }
 
 .signupContainer h3 {
@@ -70,7 +70,7 @@
   font-size: 20px;
 }
 
-.signupForm button {
+/*.signupForm button {
   width: 20%;
   border: none;
   height: 30px;
@@ -80,7 +80,7 @@
   font-weight: bolder;
   color: white;
   cursor: pointer;
-}
+}*/
 
 .recs img{
   align-items: center;

@@ -31,8 +31,8 @@ const Navigationbar = (props) => {
             {props.loggedIn? (<button onClick={logOut}>Log Out</button>) : (
               <NavLinks style={linkAnimation}>
                 <a href="https://bw-spotify-song-suggester-2.github.io/Marketing-page/">Home </a>
-                <a href="/login">Sign-In</a>
-                <a href="/signup">Register</a>
+                <a href="/login">Log In</a>
+                <a href="/signup">Sign Up</a>
               </NavLinks>
             )}
         </FlexContainer>
